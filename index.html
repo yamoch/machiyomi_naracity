@@ -148,9 +148,16 @@
         padding-top: 15px;
         border-top: 1px solid #eee;
         display: flex;
-        gap: 10px;
+        gap: 5px;
         justify-content: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+      }
+
+      .filter-section .btn {
+        font-size: 0.7rem;
+        padding: 8px 4px;
+        white-space: nowrap;
+        flex: 1;
       }
 
       #wordList {
@@ -240,7 +247,9 @@
   <body>
     <header>
       <h3>まちよみ（奈良市）</h3>
-      <button id="hamburgerBtn" class="hamburger-btn" aria-label="メニュー">☰</button>
+      <button id="hamburgerBtn" class="hamburger-btn" aria-label="メニュー">
+        ☰
+      </button>
       <div id="menuDropdown" class="menu-dropdown">
         <div class="menu-item">
           <label class="menu-title">外部CSVファイルを読み込む</label>
@@ -250,8 +259,17 @@
             <span id="fileName" class="file-name">ファイル未選択</span>
           </div>
         </div>
-        <div class="menu-item" style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 15px;">
-          <button id="clearStorageBtn" class="btn btn-clear">保存データをリセット</button>
+        <div
+          class="menu-item"
+          style="
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+          "
+        >
+          <button id="clearStorageBtn" class="btn btn-clear">
+            読み込んだデータをリセット
+          </button>
         </div>
       </div>
     </header>
@@ -304,11 +322,11 @@
       // 同一階層のCSVを自動読み込み
       function loadDefaultCSV() {
         fetch("townname.csv")
-          .then(response => {
+          .then((response) => {
             if (!response.ok) throw new Error("Network response was not ok");
             return response.arrayBuffer();
           })
-          .then(buffer => {
+          .then((buffer) => {
             let text;
             try {
               const decoder = new TextDecoder("shift-jis");
@@ -319,7 +337,7 @@
             }
             processCSV(text);
           })
-          .catch(error => {
+          .catch((error) => {
             console.log("初期CSVの自動読み込みに失敗しました:", error);
           });
       }
